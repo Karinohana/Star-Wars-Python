@@ -18,6 +18,9 @@ flask-cors = "*"
 gunicorn = "*"
 mysqlclient = "*"
 flask-admin = "*"
+flask-jwt-extended = "*"
+pyjwt = "*"
+argon2-cffi = "*"
 
 [requires]
 python_version = "3.8"
