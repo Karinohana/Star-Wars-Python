@@ -66,6 +66,16 @@ def accounts():
     }
     return jsonify(account_info)
 
+@app.route('/people/<int:id>', methods=['GET'])
+def handle_people_id(id):
+    people = People.query.filter(People.id)
+    response = {
+        "person": People.serialize(people[id-1])
+    }
+
+    
+
+    return jsonify(response), 200
 
 # Handle/serialize errors like a JSON object
 @app.errorhandler(APIException)
@@ -103,14 +113,6 @@ def handle_people():
     return jsonify(data), 200
 
 
-@app.route('/people/<int:people_id>', methods=['GET'])
-def handle_people_id():
-
-    response_body = {
-        "msg": "Hello, this is your GET /user response "
-    }
-
-    return jsonify(response_body), 200
 
 @app.route('/planets', methods=['GET'])
 def handle_planets():
