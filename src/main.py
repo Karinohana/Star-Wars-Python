@@ -161,7 +161,7 @@ def handle_favs_people():
 @app.route('/people', methods=['POST'])
 def handle_post_people():
     payload = request.get_json()
-    info = People(name = payload["name"],gender = payload["gender"], hair_color = payload["hair_color"])
+    info = People(name = payload["name"],image1 = payload["image1"], image2 = payload["image2"], brief = payload["brief"], description = payload["description"],tbd = payload["tbd"], tbd2 = payload["tbd2"])
     db.session.add(info)
     db.session.commit()
 
