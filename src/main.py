@@ -124,21 +124,22 @@ def handle_planets():
 @app.route('/planets', methods=['POST'])
 def handle_post_planet():
     payload = request.get_json()
-    info = Planets(name = payload["name"],climate = payload["climate"], terrain = payload["terrain"])
+    info = Planets(name = payload["name"],image1 = payload["image1"], image2 = payload["image2"], brief = payload["brief"], description = payload["description"],tbd = payload["tbd"], tbd2 = payload["tbd2"])
     db.session.add(info)
     db.session.commit()
 
     return "success", 200
 
 
-@app.route('/planets/<int:planet_id>', methods=['GET'])
-def handle_planets_id():
-
-    response_body = {
-        "msg": "Hello, this is your GET /user response "
+@app.route('/planets/<int:id>', methods=['GET'])
+def handle_planets_id(id):
+    planets = Planets.query.filter(Planets.id)
+    response = {
+        "planets":
+    Planets.serialize(planets[id-1])
     }
 
-    return jsonify(response_body), 200
+    return jsonify(response), 200
 
 @app.route('/favorite/planet/<int:planet_id>', methods=['POST'])
 def handle_favs_planet():

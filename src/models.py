@@ -34,18 +34,25 @@ class Account(db.Model):
 
 class Planets(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120), unique=True, nullable=False)
-    climate = db.Column(db.String(80), unique=False, nullable=False)
-    terrain = db.Column(db.String(80), unique=False, nullable=False)
+    name = db.Column(db.String(120), nullable=False)
+    image1 = db.Column(db.String(200), nullable=False)
+    image2 = db.Column(db.String(200), nullable=False)
+    brief = db.Column(db.String(200), nullable=False)
+    description = db.Column(db.String(400), nullable=False)
+    tbd = db.Column(db.String(200), nullable=True)
+    tbd2 = db.Column(db.String(200), nullable=True)
 
     def __repr__(self):
-        return '<Planets %r>' % self.name
+        return self.name
 
     def serialize(self):
         return {
+            "id": self.id,
             "name": self.name,
-            "climate": self.climate,
-            "terrain": self.terrain,
+            "image1": self.image1,
+            "image2": self.image2,
+            "brief": self.brief,
+            "description": self.description,
             # do not serialize the password, its a security breach
         }
 
